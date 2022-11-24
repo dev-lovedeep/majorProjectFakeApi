@@ -29,6 +29,7 @@ app.get("/verify",(req,res)=>{
     if(!account||!txn)
     res.json({amount:0});
 
+    console.log("received:",txn,account)
     const transactions = JSON.parse(
       fs.readFileSync(`${__dirname}/db.json`)
     );
