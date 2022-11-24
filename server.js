@@ -2,11 +2,19 @@ const express = require("express");
 const morgan = require("morgan");
 require('dotenv').config()
 const app = express();  //Create new instance
-const PORT = process.env.PORT || 5000; //Declare the port number
+const PORT = process.env.PORT || 8000; //Declare the port number
 const fs = require('fs')
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json()); //allows us to access request body as req.body
 app.use(morgan("dev"));  //enable incoming request logging in dev mode
+
+fs.writeFile(
+  `${__dirname}/db.json`,`[]`,
+  err => {
+   if(err)
+   console.log("unable to create empty db file")
+   console.log("db file created")
+})
 
 //Define the endpoint
 app.get("/", (req, res) => {  
