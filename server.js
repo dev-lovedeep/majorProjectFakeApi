@@ -34,10 +34,14 @@ app.get("/verify",(req,res)=>{
       fs.readFileSync(`${__dirname}/db.json`)
     );
 
-    const found = transactions.find(t => t.txnId === txn);
+    const found = transactions.find(t => t.txnId ==txn && t.account==account);
     if(found)
-    res.status(200).json({amount:found.amount})
-    res.status(404).json({amount:0})
+    {
+      console.log("found",found,found.amount)
+      return res.status(200).json({amount:found.amount})
+    }
+    else 
+    return res.status(404).json({amount:0})
 })
 
 //create new entry of payment
