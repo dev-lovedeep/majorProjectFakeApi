@@ -41,7 +41,8 @@ app.get("/verify",(req,res)=>{
       return res.status(200).json({amount:found.amount})
     }
     else 
-    return res.status(404).json({amount:0})
+    //making the response 200 to avoid any issue with oracle
+    return res.status(200).json({amount:0})
 })
 
 //create new entry of payment
